@@ -1,0 +1,6 @@
+framework module Pods_StarFound {
+  umbrella header "Pods-StarFound-umbrella.h"
+
+  export *
+  module * { export * }
+}

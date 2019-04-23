@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Ammo" representedClassName="Ammo" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="current" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isBattery" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="perUnits" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="special" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ownsBattery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="ownsBattery" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="usedBy" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Weapon" inverseName="using" inverseEntity="Weapon" syncable="YES"/>
+        <relationship name="usedByArmor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Armor" inverseName="using" inverseEntity="Armor" syncable="YES"/>
+        <relationship name="usedByAttack" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Attack" inverseName="using" inverseEntity="Attack" syncable="YES"/>
+        <relationship name="usedByItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="using" inverseEntity="Item" syncable="YES"/>
+    </entity>
+    <entity name="Armor" representedClassName="Armor" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="charges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="checkPenalty" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="equiped" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxDexBonus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="upgradeSlots" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usageDuration" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="armorBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="armorBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="armorFusion" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Fusion" inverseName="armorFusion" inverseEntity="Fusion" syncable="YES"/>
+        <relationship name="ownsArmor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="ownsArmor" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="using" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ammo" inverseName="usedByArmor" inverseEntity="Ammo" syncable="YES"/>
+    </entity>
+    <entity name="Attack" representedClassName="Attack" syncable="YES" codeGenerationType="class">
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="charges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="critical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roll" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forPC" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="attack" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="using" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ammo" inverseName="usedByAttack" inverseEntity="Ammo" syncable="YES"/>
+    </entity>
+    <entity name="Bonus" representedClassName="Bonus" syncable="YES" codeGenerationType="class">
+        <attribute name="bonus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="armorBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Armor" inverseName="armorBonus" inverseEntity="Armor" syncable="YES"/>
+        <relationship name="compendiumArmor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumArmor" inverseName="armorBonus" inverseEntity="CompendiumArmor" syncable="YES"/>
+        <relationship name="compendiumCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumCondition" inverseName="bonuses" inverseEntity="CompendiumCondition" syncable="YES"/>
+        <relationship name="compendiumFeat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumFeat" inverseName="featBonus" inverseEntity="CompendiumFeat" syncable="YES"/>
+        <relationship name="compendiumItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumItem" inverseName="itemBonus" inverseEntity="CompendiumItem" syncable="YES"/>
+        <relationship name="compendiumRace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumRace" inverseName="racialBonus" inverseEntity="CompendiumRace" syncable="YES"/>
+        <relationship name="compendiumTheme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumTheme" inverseName="themeBonus" inverseEntity="CompendiumTheme" syncable="YES"/>
+        <relationship name="compendiumWeapon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumWeapon" inverseName="weaponBonus" inverseEntity="CompendiumWeapon" syncable="YES"/>
+        <relationship name="conditionalBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="conditionalBonus" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="featureBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Feature" inverseName="featureBonus" inverseEntity="Feature" syncable="YES"/>
+        <relationship name="forTheme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Theme" inverseName="themeBonus" inverseEntity="Theme" syncable="YES"/>
+        <relationship name="itemBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="itemBonus" inverseEntity="Item" syncable="YES"/>
+        <relationship name="racialBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="racialBonus" inverseEntity="Race" syncable="YES"/>
+        <relationship name="weaponBonus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weapon" inverseName="weaponBonus" inverseEntity="Weapon" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumAmmo" representedClassName="CompendiumAmmo" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="charges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="comesAs" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isBattery" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="special" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumArmor" representedClassName="CompendiumArmor" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="checkPenalty" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxDexBonus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="upgradeSlots" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usageDuration" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="armorBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumArmor" inverseEntity="Bonus" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumClass" representedClassName="CompendiumClass" syncable="YES" codeGenerationType="class">
+        <attribute name="classSkills" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hitPoints" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="skillRanks" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="spellcastingAbility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="staminaPoints" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="classLevel" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CompendiumLevel" inverseName="compendiumClass" inverseEntity="CompendiumLevel" syncable="YES"/>
+        <relationship name="classSkill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skill" inverseName="compendiumClass" inverseEntity="Skill" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumCondition" representedClassName="CompendiumCondition" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bonuses" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumCondition" inverseEntity="Bonus" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumFeat" representedClassName="CompendiumFeat" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="featBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumFeat" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="featOption" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Option" inverseName="compendiumFeat" inverseEntity="Option" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumItem" representedClassName="CompendiumItem" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="equiped" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="magicOrTech" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="itemBonus" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Bonus" inverseName="compendiumItem" inverseEntity="Bonus" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumLevel" representedClassName="CompendiumLevel" syncable="YES" codeGenerationType="class">
+        <attribute name="bab" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fort" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ref" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="will" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="compendiumClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumClass" inverseName="classLevel" inverseEntity="CompendiumClass" syncable="YES"/>
+        <relationship name="compendiumClassFeature" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="compendiumClassFeature" inverseEntity="Feature" syncable="YES"/>
+        <relationship name="compendiumClassSlots" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SpellSlot" inverseName="compendiumClassSlots" inverseEntity="SpellSlot" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumRace" representedClassName="CompendiumRace" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="racialBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumRace" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="racialFeature" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="compendiumRace" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumSpell" representedClassName="CompendiumSpell" syncable="YES" codeGenerationType="class">
+        <attribute name="area" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="castingTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="effect" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="savingThrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="school" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spellResistance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targets" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumTheme" representedClassName="CompendiumTheme" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="themeBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumTheme" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="themeFeatures" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="compendiumTheme" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <entity name="CompendiumWeapon" representedClassName="CompendiumWeapon" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="critical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="special" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="weaponBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="compendiumWeapon" inverseEntity="Bonus" syncable="YES"/>
+    </entity>
+    <entity name="Feature" representedClassName="Feature" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="classFeature" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Level" inverseName="classFeature" inverseEntity="Level" syncable="YES"/>
+        <relationship name="compendiumClassFeature" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumLevel" inverseName="compendiumClassFeature" inverseEntity="CompendiumLevel" syncable="YES"/>
+        <relationship name="compendiumRace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumRace" inverseName="racialFeature" inverseEntity="CompendiumRace" syncable="YES"/>
+        <relationship name="compendiumTheme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumTheme" inverseName="themeFeatures" inverseEntity="CompendiumTheme" syncable="YES"/>
+        <relationship name="feats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="feats" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="featureBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="featureBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="featureOptions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Option" inverseName="forFeat" inverseEntity="Option" syncable="YES"/>
+        <relationship name="forTheme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Theme" inverseName="themeFeature" inverseEntity="Theme" syncable="YES"/>
+        <relationship name="racialFeatures" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="racialFeature" inverseEntity="Race" syncable="YES"/>
+    </entity>
+    <entity name="Fusion" representedClassName="Fusion" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="armorFusion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Armor" inverseName="armorFusion" inverseEntity="Armor" syncable="YES"/>
+        <relationship name="weaponFusion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weapon" inverseName="weaponFusion" inverseEntity="Weapon" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="charges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="equiped" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="itemBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="itemBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="ownsItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="ownsItem" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="using" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ammo" inverseName="usedByItem" inverseEntity="Ammo" syncable="YES"/>
+    </entity>
+    <entity name="Level" representedClassName="Level" syncable="YES" codeGenerationType="class">
+        <attribute name="bab" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="compendiumClass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fortitude" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hitPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="levels" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reflex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="skillRanks" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="spellcastingAbility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spellcastingType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stamina" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="will" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="classFeature" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="classFeature" inverseEntity="Feature" syncable="YES"/>
+        <relationship name="classLevels" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="classLevels" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="classSlots" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SpellSlot" inverseName="classSlots" inverseEntity="SpellSlot" syncable="YES"/>
+        <relationship name="classSpells" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Spell" inverseName="spellClass" inverseEntity="Spell" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forPC" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="notes" inverseEntity="PlayerCharacter" syncable="YES"/>
+    </entity>
+    <entity name="Option" representedClassName="Option" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="compendiumFeat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumFeat" inverseName="featOption" inverseEntity="CompendiumFeat" syncable="YES"/>
+        <relationship name="forFeat" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feature" inverseName="featureOptions" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <entity name="PlayerCharacter" representedClassName="PlayerCharacter" syncable="YES" codeGenerationType="class">
+        <attribute name="alignment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="charisma" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="constitution" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="credits" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="deity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dexterity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="eyes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gravityModifier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hair" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homeworld" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hpCurrent" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="intelligence" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="portraitPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resolveAbility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resolveCurrent" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="staminaCurrent" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="strength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wisdom" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="attack" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Attack" inverseName="forPC" inverseEntity="Attack" syncable="YES"/>
+        <relationship name="classLevels" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Level" inverseName="classLevels" inverseEntity="Level" syncable="YES"/>
+        <relationship name="conditionalBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="conditionalBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="feats" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="feats" inverseEntity="Feature" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Note" inverseName="forPC" inverseEntity="Note" syncable="YES"/>
+        <relationship name="ownsArmor" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Armor" inverseName="ownsArmor" inverseEntity="Armor" syncable="YES"/>
+        <relationship name="ownsBattery" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Ammo" inverseName="ownsBattery" inverseEntity="Ammo" syncable="YES"/>
+        <relationship name="ownsItem" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="ownsItem" inverseEntity="Item" syncable="YES"/>
+        <relationship name="ownsWeapon" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Weapon" inverseName="ownsWeapon" inverseEntity="Weapon" syncable="YES"/>
+        <relationship name="race" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Race" inverseName="pc" inverseEntity="Race" syncable="YES"/>
+        <relationship name="skills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="character" inverseEntity="Skill" syncable="YES"/>
+        <relationship name="theme" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Theme" inverseName="pc" inverseEntity="Theme" syncable="YES"/>
+        <relationship name="trackers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Tracker" inverseName="forPC" inverseEntity="Tracker" syncable="YES"/>
+    </entity>
+    <entity name="Race" representedClassName="Race" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="pc" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="race" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="racialBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="racialBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="racialFeature" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="racialFeatures" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <entity name="Skill" representedClassName="Skill" syncable="YES" codeGenerationType="class">
+        <attribute name="ability" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="armorCheck" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="classSkill" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ranks" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="skills" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="compendiumClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumClass" inverseName="classSkill" inverseEntity="CompendiumClass" syncable="YES"/>
+    </entity>
+    <entity name="Spell" representedClassName="Spell" syncable="YES" codeGenerationType="class">
+        <attribute name="area" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="castingTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="effect" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="savingThrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="school" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spellResistance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targets" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="spellClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Level" inverseName="classSpells" inverseEntity="Level" syncable="YES"/>
+    </entity>
+    <entity name="SpellSlot" representedClassName="SpellSlot" syncable="YES" codeGenerationType="class">
+        <attribute name="slots" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="used" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="classSlots" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Level" inverseName="classSlots" inverseEntity="Level" syncable="YES"/>
+        <relationship name="compendiumClassSlots" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompendiumLevel" inverseName="compendiumClassSlots" inverseEntity="CompendiumLevel" syncable="YES"/>
+    </entity>
+    <entity name="Theme" representedClassName="Theme" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pc" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="theme" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="themeBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="forTheme" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="themeFeature" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Feature" inverseName="forTheme" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <entity name="Tracker" representedClassName="Tracker" syncable="YES" codeGenerationType="class">
+        <attribute name="doesReset" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reset" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forPC" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="trackers" inverseEntity="PlayerCharacter" syncable="YES"/>
+    </entity>
+    <entity name="Weapon" representedClassName="Weapon" syncable="YES" codeGenerationType="class">
+        <attribute name="bulk" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="charges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="critical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="equiped" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="roll" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="special" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ownsWeapon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerCharacter" inverseName="ownsWeapon" inverseEntity="PlayerCharacter" syncable="YES"/>
+        <relationship name="using" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ammo" inverseName="usedBy" inverseEntity="Ammo" syncable="YES"/>
+        <relationship name="weaponBonus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bonus" inverseName="weaponBonus" inverseEntity="Bonus" syncable="YES"/>
+        <relationship name="weaponFusion" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Fusion" inverseName="weaponFusion" inverseEntity="Fusion" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ammo" positionX="-666" positionY="-54" width="128" height="270"/>
+        <element name="Armor" positionX="-81" positionY="180" width="128" height="330"/>
+        <element name="Attack" positionX="-666" positionY="-54" width="128" height="195"/>
+        <element name="Bonus" positionX="-308" positionY="756" width="128" height="300"/>
+        <element name="CompendiumAmmo" positionX="-666" positionY="-54" width="128" height="180"/>
+        <element name="CompendiumArmor" positionX="-657" positionY="-45" width="128" height="240"/>
+        <element name="CompendiumClass" positionX="144" positionY="-36" width="128" height="165"/>
+        <element name="CompendiumCondition" positionX="-666" positionY="-54" width="128" height="90"/>
+        <element name="CompendiumFeat" positionX="-666" positionY="-54" width="128" height="120"/>
+        <element name="CompendiumItem" positionX="-657" positionY="-45" width="128" height="210"/>
+        <element name="CompendiumLevel" positionX="144" positionY="162" width="128" height="165"/>
+        <element name="CompendiumRace" positionX="9" positionY="-36" width="128" height="90"/>
+        <element name="CompendiumSpell" positionX="-666" positionY="-54" width="128" height="240"/>
+        <element name="CompendiumTheme" positionX="-126" positionY="-36" width="128" height="90"/>
+        <element name="CompendiumWeapon" positionX="-666" positionY="-54" width="128" height="255"/>
+        <element name="Feature" positionX="-585" positionY="765" width="128" height="210"/>
+        <element name="Fusion" positionX="-666" positionY="-54" width="128" height="105"/>
+        <element name="Item" positionX="9" positionY="462" width="128" height="255"/>
+        <element name="Level" positionX="-873" positionY="717" width="128" height="285"/>
+        <element name="Note" positionX="-666" positionY="-54" width="128" height="90"/>
+        <element name="Option" positionX="-666" positionY="-54" width="128" height="120"/>
+        <element name="PlayerCharacter" positionX="-875" positionY="126" width="128" height="615"/>
+        <element name="Race" positionX="-704" positionY="126" width="128" height="105"/>
+        <element name="Skill" positionX="-306" positionY="270" width="128" height="150"/>
+        <element name="Spell" positionX="-180" positionY="423" width="128" height="255"/>
+        <element name="SpellSlot" positionX="-236" positionY="93" width="128" height="105"/>
+        <element name="Theme" positionX="-704" positionY="243" width="128" height="105"/>
+        <element name="Tracker" positionX="-666" positionY="-54" width="128" height="120"/>
+        <element name="Weapon" positionX="-488" positionY="126" width="128" height="360"/>
+    </elements>
+</model>

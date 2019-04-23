@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8413E26622178A560055C6EE /* EditorCombatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413E26522178A560055C6EE /* EditorCombatController.swift */; };
+		8418DF4620952DE10098B210 /* LevelUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418DF4520952DE10098B210 /* LevelUpController.swift */; };
+		8418DF482097D1620098B210 /* EditorSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418DF472097D1620098B210 /* EditorSkillsController.swift */; };
+		8418DF4A20991C5C0098B210 /* CharacterFeaturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418DF4920991C5C0098B210 /* CharacterFeaturesController.swift */; };
+		841FADE320A294F600EFA267 /* EditorSpellsKnownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FADE220A294F600EFA267 /* EditorSpellsKnownController.swift */; };
+		8422F387208871FE006E8CB6 /* StarFinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8422F385208871FE006E8CB6 /* StarFinder.xcdatamodeld */; };
+		8422F38B20895740006E8CB6 /* FeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8422F38A20895740006E8CB6 /* FeatController.swift */; };
+		8422F38F20895B4B006E8CB6 /* ModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8422F38E20895B4B006E8CB6 /* ModifierController.swift */; };
+		84296B2720B8DD02002332CC /* EditorNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84296B2620B8DD02002332CC /* EditorNoteController.swift */; };
+		8434441620C0E1C3005135D9 /* RollerCalcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434441520C0E1C3005135D9 /* RollerCalcController.swift */; };
+		843D124B20A7A30C008775C4 /* MasterCharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D124A20A7A30C008775C4 /* MasterCharacterController.swift */; };
+		843D913E20B4F2F900F134F9 /* MasterEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D913D20B4F2F900F134F9 /* MasterEditorController.swift */; };
+		843E80CA2225DC7800B41201 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843E80C92225DC7800B41201 /* StoreKit.framework */; };
+		843F7CCD20780F6F0022A5C6 /* EditorTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843F7CCC20780F6F0022A5C6 /* EditorTabController.swift */; };
+		843F7CCF207819AB0022A5C6 /* ProgressEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843F7CCE207819AB0022A5C6 /* ProgressEditorController.swift */; };
+		843F7CD1207976E10022A5C6 /* EditorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843F7CD0207976E00022A5C6 /* EditorDetailController.swift */; };
+		8441FB1B207EECD600EFDB72 /* EditorClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB1A207EECD600EFDB72 /* EditorClassController.swift */; };
+		8441FB1D2082AC2100EFDB72 /* CharacterSkillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */; };
+		844543B322374663005B02F6 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844543B222374663005B02F6 /* Loader.swift */; };
+		84574C612076FFE700C3FD6F /* RollerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84574C602076FFE700C3FD6F /* RollerController.swift */; };
+		846F1BAC20743B6A0068414C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1BAB20743B6A0068414C /* AppDelegate.swift */; };
+		846F1BB120743B6B0068414C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BAF20743B6B0068414C /* Main.storyboard */; };
+		846F1BB620743B6B0068414C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BB520743B6B0068414C /* Assets.xcassets */; };
+		846F1BB920743B6B0068414C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BB720743B6B0068414C /* LaunchScreen.storyboard */; };
+		846F1BC72075AB680068414C /* CharacterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1BC62075AB680068414C /* CharacterDetailsController.swift */; };
+		846F1BC92076D0B70068414C /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1BC82076D0B70068414C /* Functions.swift */; };
+		84868B4C2086C7D700683C60 /* EditorNewRaceThemeClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84868B4B2086C7D700683C60 /* EditorNewRaceThemeClassController.swift */; };
+		848F6F40209A85B300074841 /* EditorFeatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F6F3F209A85B300074841 /* EditorFeatsController.swift */; };
+		848F6F42209CFEA300074841 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F6F41209CFEA300074841 /* CoreDataStack.swift */; };
+		848F6F44209D261C00074841 /* CharacterSpellsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F6F43209D261C00074841 /* CharacterSpellsController.swift */; };
+		8495C864222736F900500C8B /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495C863222736F900500C8B /* IAP.swift */; };
+		84A2B6D420B774FE007D05BC /* KGCountingStars.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A2B6D320B774EF007D05BC /* KGCountingStars.ttf */; };
+		84A2B6D620B78728007D05BC /* CharacterCombatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2B6D520B78728007D05BC /* CharacterCombatController.swift */; };
+		84A429322088033500AA9E4C /* EditorFeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A429312088033500AA9E4C /* EditorFeatController.swift */; };
+		84A6162F221E452F0006311D /* CharacterSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A6162E221E452F0006311D /* CharacterSelectorController.swift */; };
+		84CEECC3207D6D7500770F3D /* Classes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 84CEECC2207D6D7500770F3D /* Classes.xml */; };
+		84CEECC5207D814F00770F3D /* Compendium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEECC4207D814F00770F3D /* Compendium.swift */; };
+		84D1F19F208A9E6F00DC8F11 /* TextEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D1F19E208A9E6F00DC8F11 /* TextEditorController.swift */; };
+		84DAEC6D20AA4BA400742EA2 /* EditorItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAEC6C20AA4BA400742EA2 /* EditorItemsController.swift */; };
+		84E9EF0020A81C27006D4D76 /* CharacterItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9EEFF20A81C27006D4D76 /* CharacterItemsController.swift */; };
+		84EBE447208AC4E800FB9AA9 /* EditorRaceThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBE446208AC4E800FB9AA9 /* EditorRaceThemeController.swift */; };
+		84F1F2BA225C24E0009944C5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F1F2B9225C24E0009944C5 /* CloudKit.framework */; };
+		F2AF55E921A1443D99986E0D /* Pods_StarFound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3964B694A66915A3F7C6B92 /* Pods_StarFound.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7568C85977E360E30F64937B /* Pods-StarFound.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarFound.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarFound/Pods-StarFound.release.xcconfig"; sourceTree = "<group>"; };
+		8413E26522178A560055C6EE /* EditorCombatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorCombatController.swift; path = StarFinder/EditorControllers/EditorCombatController.swift; sourceTree = SOURCE_ROOT; };
+		8418DF4520952DE10098B210 /* LevelUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpController.swift; sourceTree = "<group>"; };
+		8418DF472097D1620098B210 /* EditorSkillsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSkillsController.swift; sourceTree = "<group>"; };
+		8418DF4920991C5C0098B210 /* CharacterFeaturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeaturesController.swift; sourceTree = "<group>"; };
+		841FADE220A294F600EFA267 /* EditorSpellsKnownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSpellsKnownController.swift; sourceTree = "<group>"; };
+		8422F386208871FE006E8CB6 /* StarFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StarFinder.xcdatamodel; sourceTree = "<group>"; };
+		8422F38A20895740006E8CB6 /* FeatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatController.swift; sourceTree = "<group>"; };
+		8422F38E20895B4B006E8CB6 /* ModifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierController.swift; sourceTree = "<group>"; };
+		84296B2620B8DD02002332CC /* EditorNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorNoteController.swift; sourceTree = "<group>"; };
+		8434441520C0E1C3005135D9 /* RollerCalcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerCalcController.swift; sourceTree = "<group>"; };
+		843D124A20A7A30C008775C4 /* MasterCharacterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCharacterController.swift; sourceTree = "<group>"; };
+		843D913D20B4F2F900F134F9 /* MasterEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterEditorController.swift; sourceTree = "<group>"; };
+		843E80C92225DC7800B41201 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		843F7CCC20780F6F0022A5C6 /* EditorTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorTabController.swift; sourceTree = "<group>"; };
+		843F7CCE207819AB0022A5C6 /* ProgressEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressEditorController.swift; sourceTree = "<group>"; };
+		843F7CD0207976E00022A5C6 /* EditorDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorDetailController.swift; sourceTree = "<group>"; };
+		8441FB1A207EECD600EFDB72 /* EditorClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorClassController.swift; sourceTree = "<group>"; };
+		8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSkillController.swift; sourceTree = "<group>"; };
+		844543B222374663005B02F6 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = StarFinder/PopupViews/Loader.swift; sourceTree = SOURCE_ROOT; };
+		84574C602076FFE700C3FD6F /* RollerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerController.swift; sourceTree = "<group>"; };
+		846F1BA820743B6A0068414C /* StarFound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarFound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		846F1BAB20743B6A0068414C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		846F1BB020743B6B0068414C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		846F1BB520743B6B0068414C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		846F1BB820743B6B0068414C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		846F1BBA20743B6B0068414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		846F1BC62075AB680068414C /* CharacterDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsController.swift; sourceTree = "<group>"; };
+		846F1BC82076D0B70068414C /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		84868B4B2086C7D700683C60 /* EditorNewRaceThemeClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorNewRaceThemeClassController.swift; sourceTree = "<group>"; };
+		848F6F3F209A85B300074841 /* EditorFeatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFeatsController.swift; sourceTree = "<group>"; };
+		848F6F41209CFEA300074841 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		848F6F43209D261C00074841 /* CharacterSpellsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSpellsController.swift; sourceTree = "<group>"; };
+		8495C863222736F900500C8B /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
+		84A2B6D320B774EF007D05BC /* KGCountingStars.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGCountingStars.ttf; sourceTree = "<group>"; };
+		84A2B6D520B78728007D05BC /* CharacterCombatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCombatController.swift; sourceTree = "<group>"; };
+		84A429312088033500AA9E4C /* EditorFeatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFeatController.swift; sourceTree = "<group>"; };
+		84A6162E221E452F0006311D /* CharacterSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectorController.swift; sourceTree = "<group>"; };
+		84CEECC2207D6D7500770F3D /* Classes.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Classes.xml; sourceTree = "<group>"; };
+		84CEECC4207D814F00770F3D /* Compendium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compendium.swift; sourceTree = "<group>"; };
+		84D1F19E208A9E6F00DC8F11 /* TextEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorController.swift; sourceTree = "<group>"; };
+		84DAEC6C20AA4BA400742EA2 /* EditorItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorItemsController.swift; sourceTree = "<group>"; };
+		84E9EEFF20A81C27006D4D76 /* CharacterItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItemsController.swift; sourceTree = "<group>"; };
+		84EBE446208AC4E800FB9AA9 /* EditorRaceThemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorRaceThemeController.swift; sourceTree = "<group>"; };
+		84F1F2B8225C24DC009944C5 /* StarFound.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StarFound.entitlements; sourceTree = "<group>"; };
+		84F1F2B9225C24E0009944C5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		A3964B694A66915A3F7C6B92 /* Pods_StarFound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarFound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBF260EA58AE222CB07E763F /* Pods-StarFound.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarFound.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarFound/Pods-StarFound.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		846F1BA520743B6A0068414C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84F1F2BA225C24E0009944C5 /* CloudKit.framework in Frameworks */,
+				843E80CA2225DC7800B41201 /* StoreKit.framework in Frameworks */,
+				F2AF55E921A1443D99986E0D /* Pods_StarFound.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		685A34F44C0E6FC91A140E6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBF260EA58AE222CB07E763F /* Pods-StarFound.debug.xcconfig */,
+				7568C85977E360E30F64937B /* Pods-StarFound.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8422F388208956BC006E8CB6 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				846F1BC82076D0B70068414C /* Functions.swift */,
+				84CEECC4207D814F00770F3D /* Compendium.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		8422F389208956E8006E8CB6 /* PopupViews */ = {
+			isa = PBXGroup;
+			children = (
+				844543B222374663005B02F6 /* Loader.swift */,
+				8418DF4520952DE10098B210 /* LevelUpController.swift */,
+				84D1F19E208A9E6F00DC8F11 /* TextEditorController.swift */,
+				8422F38E20895B4B006E8CB6 /* ModifierController.swift */,
+				843F7CCE207819AB0022A5C6 /* ProgressEditorController.swift */,
+				8434441520C0E1C3005135D9 /* RollerCalcController.swift */,
+				84574C602076FFE700C3FD6F /* RollerController.swift */,
+				8422F38A20895740006E8CB6 /* FeatController.swift */,
+			);
+			path = PopupViews;
+			sourceTree = "<group>";
+		};
+		8422F38C20895788006E8CB6 /* EditorControllers */ = {
+			isa = PBXGroup;
+			children = (
+				843D913D20B4F2F900F134F9 /* MasterEditorController.swift */,
+				843F7CD0207976E00022A5C6 /* EditorDetailController.swift */,
+				84868B4B2086C7D700683C60 /* EditorNewRaceThemeClassController.swift */,
+				84EBE446208AC4E800FB9AA9 /* EditorRaceThemeController.swift */,
+				8413E26522178A560055C6EE /* EditorCombatController.swift */,
+				8441FB1A207EECD600EFDB72 /* EditorClassController.swift */,
+				848F6F3F209A85B300074841 /* EditorFeatsController.swift */,
+				84A429312088033500AA9E4C /* EditorFeatController.swift */,
+				841FADE220A294F600EFA267 /* EditorSpellsKnownController.swift */,
+				8418DF472097D1620098B210 /* EditorSkillsController.swift */,
+				84DAEC6C20AA4BA400742EA2 /* EditorItemsController.swift */,
+				84296B2620B8DD02002332CC /* EditorNoteController.swift */,
+				843F7CCC20780F6F0022A5C6 /* EditorTabController.swift */,
+			);
+			path = EditorControllers;
+			sourceTree = "<group>";
+		};
+		8422F38D208957C6006E8CB6 /* CharacterControllers */ = {
+			isa = PBXGroup;
+			children = (
+				843D124A20A7A30C008775C4 /* MasterCharacterController.swift */,
+				846F1BC62075AB680068414C /* CharacterDetailsController.swift */,
+				84A2B6D520B78728007D05BC /* CharacterCombatController.swift */,
+				848F6F43209D261C00074841 /* CharacterSpellsController.swift */,
+				8418DF4920991C5C0098B210 /* CharacterFeaturesController.swift */,
+				8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */,
+				84E9EEFF20A81C27006D4D76 /* CharacterItemsController.swift */,
+			);
+			path = CharacterControllers;
+			sourceTree = "<group>";
+		};
+		843E80C82225DC7800B41201 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84F1F2B9225C24E0009944C5 /* CloudKit.framework */,
+				843E80C92225DC7800B41201 /* StoreKit.framework */,
+				A3964B694A66915A3F7C6B92 /* Pods_StarFound.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		846F1B9F20743B6A0068414C = {
+			isa = PBXGroup;
+			children = (
+				84F1F2B8225C24DC009944C5 /* StarFound.entitlements */,
+				846F1BAA20743B6A0068414C /* StarFinder */,
+				846F1BA920743B6A0068414C /* Products */,
+				843E80C82225DC7800B41201 /* Frameworks */,
+				685A34F44C0E6FC91A140E6C /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		846F1BA920743B6A0068414C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				846F1BA820743B6A0068414C /* StarFound.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		846F1BAA20743B6A0068414C /* StarFinder */ = {
+			isa = PBXGroup;
+			children = (
+				848F6F41209CFEA300074841 /* CoreDataStack.swift */,
+				846F1BAB20743B6A0068414C /* AppDelegate.swift */,
+				8495C863222736F900500C8B /* IAP.swift */,
+				84A6162E221E452F0006311D /* CharacterSelectorController.swift */,
+				8422F38D208957C6006E8CB6 /* CharacterControllers */,
+				8422F38C20895788006E8CB6 /* EditorControllers */,
+				8422F389208956E8006E8CB6 /* PopupViews */,
+				8422F388208956BC006E8CB6 /* Rules */,
+				846F1BAF20743B6B0068414C /* Main.storyboard */,
+				84CEECC2207D6D7500770F3D /* Classes.xml */,
+				846F1BB520743B6B0068414C /* Assets.xcassets */,
+				84A2B6D320B774EF007D05BC /* KGCountingStars.ttf */,
+				846F1BB720743B6B0068414C /* LaunchScreen.storyboard */,
+				846F1BBA20743B6B0068414C /* Info.plist */,
+				8422F385208871FE006E8CB6 /* StarFinder.xcdatamodeld */,
+			);
+			path = StarFinder;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		846F1BA720743B6A0068414C /* StarFound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 846F1BBD20743B6B0068414C /* Build configuration list for PBXNativeTarget "StarFound" */;
+			buildPhases = (
+				01C8F8B148056DA7AA5E7F8B /* [CP] Check Pods Manifest.lock */,
+				846F1BA420743B6A0068414C /* Sources */,
+				846F1BA520743B6A0068414C /* Frameworks */,
+				846F1BA620743B6A0068414C /* Resources */,
+				D3A18AC4F2D99A9C6E04466F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StarFound;
+			productName = StarFinder;
+			productReference = 846F1BA820743B6A0068414C /* StarFound.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		846F1BA020743B6A0068414C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Tom;
+				TargetAttributes = {
+					846F1BA720743B6A0068414C = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 846F1BA320743B6A0068414C /* Build configuration list for PBXProject "StarFound" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 846F1B9F20743B6A0068414C;
+			productRefGroup = 846F1BA920743B6A0068414C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				846F1BA720743B6A0068414C /* StarFound */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		846F1BA620743B6A0068414C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84CEECC3207D6D7500770F3D /* Classes.xml in Resources */,
+				846F1BB920743B6B0068414C /* LaunchScreen.storyboard in Resources */,
+				846F1BB620743B6B0068414C /* Assets.xcassets in Resources */,
+				84A2B6D420B774FE007D05BC /* KGCountingStars.ttf in Resources */,
+				846F1BB120743B6B0068414C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01C8F8B148056DA7AA5E7F8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StarFound-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3A18AC4F2D99A9C6E04466F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StarFound/Pods-StarFound-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarFound/Pods-StarFound-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		846F1BA420743B6A0068414C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84A429322088033500AA9E4C /* EditorFeatController.swift in Sources */,
+				84A2B6D620B78728007D05BC /* CharacterCombatController.swift in Sources */,
+				8441FB1D2082AC2100EFDB72 /* CharacterSkillController.swift in Sources */,
+				846F1BAC20743B6A0068414C /* AppDelegate.swift in Sources */,
+				846F1BC92076D0B70068414C /* Functions.swift in Sources */,
+				84A6162F221E452F0006311D /* CharacterSelectorController.swift in Sources */,
+				8434441620C0E1C3005135D9 /* RollerCalcController.swift in Sources */,
+				843D124B20A7A30C008775C4 /* MasterCharacterController.swift in Sources */,
+				843F7CCD20780F6F0022A5C6 /* EditorTabController.swift in Sources */,
+				843F7CD1207976E10022A5C6 /* EditorDetailController.swift in Sources */,
+				8418DF4620952DE10098B210 /* LevelUpController.swift in Sources */,
+				8441FB1B207EECD600EFDB72 /* EditorClassController.swift in Sources */,
+				8422F38F20895B4B006E8CB6 /* ModifierController.swift in Sources */,
+				843F7CCF207819AB0022A5C6 /* ProgressEditorController.swift in Sources */,
+				8418DF4A20991C5C0098B210 /* CharacterFeaturesController.swift in Sources */,
+				843D913E20B4F2F900F134F9 /* MasterEditorController.swift in Sources */,
+				84296B2720B8DD02002332CC /* EditorNoteController.swift in Sources */,
+				848F6F40209A85B300074841 /* EditorFeatsController.swift in Sources */,
+				84DAEC6D20AA4BA400742EA2 /* EditorItemsController.swift in Sources */,
+				844543B322374663005B02F6 /* Loader.swift in Sources */,
+				8418DF482097D1620098B210 /* EditorSkillsController.swift in Sources */,
+				8495C864222736F900500C8B /* IAP.swift in Sources */,
+				84CEECC5207D814F00770F3D /* Compendium.swift in Sources */,
+				84868B4C2086C7D700683C60 /* EditorNewRaceThemeClassController.swift in Sources */,
+				84E9EF0020A81C27006D4D76 /* CharacterItemsController.swift in Sources */,
+				848F6F42209CFEA300074841 /* CoreDataStack.swift in Sources */,
+				84574C612076FFE700C3FD6F /* RollerController.swift in Sources */,
+				8422F38B20895740006E8CB6 /* FeatController.swift in Sources */,
+				848F6F44209D261C00074841 /* CharacterSpellsController.swift in Sources */,
+				84EBE447208AC4E800FB9AA9 /* EditorRaceThemeController.swift in Sources */,
+				84D1F19F208A9E6F00DC8F11 /* TextEditorController.swift in Sources */,
+				841FADE320A294F600EFA267 /* EditorSpellsKnownController.swift in Sources */,
+				8413E26622178A560055C6EE /* EditorCombatController.swift in Sources */,
+				846F1BC72075AB680068414C /* CharacterDetailsController.swift in Sources */,
+				8422F387208871FE006E8CB6 /* StarFinder.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		846F1BAF20743B6B0068414C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				846F1BB020743B6B0068414C /* Base */,
+			);
+			name = Main.storyboard;
+			path = StarFinder;
+			sourceTree = SOURCE_ROOT;
+		};
+		846F1BB720743B6B0068414C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				846F1BB820743B6B0068414C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		846F1BBB20743B6B0068414C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		846F1BBC20743B6B0068414C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		846F1BBE20743B6B0068414C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBF260EA58AE222CB07E763F /* Pods-StarFound.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StarFound.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R87XPXN99F;
+				INFOPLIST_FILE = StarFinder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Rambart.StarFound;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		846F1BBF20743B6B0068414C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7568C85977E360E30F64937B /* Pods-StarFound.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StarFound.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R87XPXN99F;
+				INFOPLIST_FILE = StarFinder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Rambart.StarFound;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		846F1BA320743B6A0068414C /* Build configuration list for PBXProject "StarFound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				846F1BBB20743B6B0068414C /* Debug */,
+				846F1BBC20743B6B0068414C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		846F1BBD20743B6B0068414C /* Build configuration list for PBXNativeTarget "StarFound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				846F1BBE20743B6B0068414C /* Debug */,
+				846F1BBF20743B6B0068414C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8422F385208871FE006E8CB6 /* StarFinder.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8422F386208871FE006E8CB6 /* StarFinder.xcdatamodel */,
+			);
+			currentVersion = 8422F386208871FE006E8CB6 /* StarFinder.xcdatamodel */;
+			path = StarFinder.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 846F1BA020743B6A0068414C /* Project object */;
+}

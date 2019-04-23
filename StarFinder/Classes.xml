@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<class>
+  <name>Envoy</name>
+  <hitPoints>6</hitPoints>
+  <staminaPoints>6</staminaPoints>
+  <classSkills>Acrobatics, Athletics, Bluff, Computers, Culture, Diplomacy, Disguise, Engineering, Intimidate, Madicine, Perception, Piloting, Profession, Sense Motive, Sleight of Hand, Stealth</classSkills>
+  <skillRanks>8</skillRanks>
+  <spellCasting>false</spellCasting>
+  
+<classLevel level="1">
+<bab>0</bab>
+<fort>0</fort>
+<ref>2</ref>
+<will>2</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+    <content>As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck.
+
+You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter.
+
+If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier.
+
+Some envoy improvisations are language-dependent, mind-affecting, sense-dependent, or some combination of any or all of these.
+
+You learn your first envoy improvisation at 1st level and an additional improvisation at 2nd level and every 2 levels thereafter. Many improvisations require you to have a minimum envoy level, and they are organized accordingly. Some improvisations have additional prerequisites, such as other improvisations.</content>
+  </feature>
+  <feature>
+    <name>Expertise (EX)</name>
+    <content>You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.
+
+Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results.</content>
+  </feature>
+  <feature>
+    <name>Skill Expertise</name>
+    <content>At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int).</content>
+  </feature>
+</classLevel>
+
+
+<classLevel level="2">
+<bab>1</bab>
+<fort>0</fort>
+<ref>3</ref>
+<will>3</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="3">
+<bab>2</bab>
+<fort>1</fort>
+<ref>3</ref>
+<will>3</will>
+  <feature>
+    <name>Expertise Talent</name>
+    <content>At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise.
+
+You gain an expertise talent at 3rd level and every 4 levels thereafter. With the exception of additional skill expertise, these talents require you to have expertise in the skills they affect, as indicated in parentheses after the talent’s name.
+    
+    Expertise Talents:
+    
+Additional Skill Expertise (Ex)
+Choose another skill in which you have at least 1 rank from the list of skills you can choose with the expertise class feature; you can use expertise with that skill. You can choose this talent up to three times, choosing a different skill each time.
+      
+Altered Bearing (Ex; Disguise)
+You can quickly adjust your posture, your stride, your demeanor, and the way your clothes and gear fit, causing casual observers to fail to recognize your true appearance. When you attempt a Disguise check to alter minor details of your appearance, you can forgo your expertise die to attempt the check as a move action. You don’t reduce the DC by 5 for attempting to alter only minor details, and if an observer succeeds at an opposed Perception check that pierces your disguise, he also realizes your true race and what features you have disguised. You can’t use this ability for more complex disguises.
+      
+Analyst (Ex; Sense Motive)
+You have been taught to carefully consider your own assumptions, making it much less likely you assign false motives to other creatures. When using Sense Motive to detect deception or discern a secret message, as long as your expertise die roll result is not a 1, you don’t think a truthful statement contains deceptions or infer false information from a secret message even if you fail your check by 5 or more.
+      
+Cautious Expertise (Ex; see below)
+Choose a skill you have selected with the skill expertise class feature. When you take 20 with this skill, you can roll your expertise die twice and take the better result.
+
+You can choose this talent up to three times, choosing a different skill selected with the skill expertise class feature each time.
+      
+Convincing Liar (Ex; Bluff)
+When you attempt a Bluff check, you can choose not to roll your expertise die until later. After you determine what the check’s result would be, you can choose to either roll your expertise die and add the result to the total or forgo the expertise die and reroll the check. At 9th level, you can spend 1 Resolve Point to reroll the check and add the result of your expertise die.
+      
+Cultural Savant (Ex; Culture)
+As long as you have enough time, you can take 20 on Culture checks to recall knowledge, even if you don’t have access to a computer terminal or other means of research.
+      
+Cunning Disguise (Ex; Disguise)
+When you attempt an initial Disguise check, you can forgo rolling your expertise die. Instead, the first time a creature would pierce your disguise with a Perception check, treat its result as if it had rolled a natural 1 on its Perception check. This benefit applies only once per disguise. At 9th level, this ability also applies against the second creature who pierces your disguise.
+      
+Engineering Adept (Ex; Engineering)
+When you attempt an Engineering check to disable or repair a device, you can forgo rolling your expertise die to instead halve the time it takes to make the attempt.
+      
+Expert Forger (Ex; Computers)
+You have a database of electronic seals and predesigned templates that allow you forge an official document in a matter of moments. When you attempt a Computers check to create a forgery, as long as you have access to a computer, you can forgo your expertise die to attempt the check as a full action (rather than the normal required time of 1d4 minutes).
+      
+Fast Hack (Ex; Computers)
+When you attempt a Computers check to hack into a computer system, you can forgo rolling your expertise die to instead halve the time it takes to make the attempt (to a minimum of 1 round). At 9th level, if you successfully hack the system, you can also negate a single countermeasure protecting that computer system. You cannot use this talent to negate a countermeasure from the same computer again for 24 hours.
+      
+Inspired Medic (Ex; Medicine)
+When you attempt a Medicine check, you can choose not to roll your expertise die until later. After you determine what the check’s result would be, you can choose to either roll your expertise die and add it to the total or forgo the expertise die and reroll the check. At 9th level, you can spend 1 Resolve Point to both reroll the check and add the result of your expertise die.
+      
+Keen Observer (Ex; Sense Motive)
+Whenever you interact with a creature under a mental effect for at least 1 minute, the GM attempts an automatic secret Sense Motive check for you without your expertise die. On a success, you learn about the mental effect. If you specifically request a Sense Motive check to sense mental effects, you can attempt a Sense Motive check as normal, including your expertise die, in addition to this automatic check.
+      
+Menacing Gaze (Ex; Intimidate)
+When you attempt an Intimidate check to demoralize foes, you can forgo your expertise die to attempt to briefly demoralize a small group as a full action. You attempt an Intimidate check against foes within 60 feet, no two of which can be more than 20 feet apart. The DC of this check is equal to the highest DC to demoralize any one of the foes. If you are successful, the targets gain the shaken condition for 1 round (even if your result exceeded the DC by 5 or more). Once you use this ability against a creature, it is immune to this talent for 24 hours.
+      
+Rattling Presence (Ex; Intimidate)
+When you attempt an Intimidate check to demoralize an opponent, you can forgo rolling your expertise die to automatically increase the duration of the shaken condition by 1 round on a successful check. At 9th level, you instead increase the duration by 2 rounds on a success when using this talent.
+      
+Skilled Linguist (Ex; Culture)
+You can speak and read a number of bonus languages equal to your ranks in Culture. Additionally, when you attempt a Culture check to decipher writing, you can forgo your expertise die to attempt the check as a full action (rather than the normal 1 minute) per approximately 250 words of writing or fewer.
+      
+Slick Customer (Ex; Diplomacy)
+When you attempt a Diplomacy check, you can choose not to roll your expertise die until later. After you determine what the check’s result would be, you can choose to either roll your expertise die and add it to the total or forgo the expertise die and reroll the check. At 9th level, you can spend 1 Resolve Point to both reroll the check and add the result of your expertise die.
+      
+Student of Technology (Ex; Engineering)
+As long as you have the time to do so, you can take 20 on Engineering checks to identify creatures and technology, even if you do not have access to a computer terminal or other means of research. If the creature or technology was created by a group or individual you are familiar with (normally including any major corporation or military), on a successful check you also identify what group created the object identified.
+      
+Surgeon (Ex; Medicine)
+You can use Medicine to treat deadly wounds on a patient once each day in addition to the normal allowances for the medical equipment you are using. Because performing this level of advanced medicine is difficult and time consuming, the DC for this additional treatment increases by 5 and the skill check takes 1 hour.
+      
+Well Informed (Ex; Diplomacy)
+You keep yourself as up to date as possible about the events and major figures of any region you are in. Once you have been in a settlement or region for at least 24 hours, when you attempt a Diplomacy check to gather information, you can forgo your expertise die to attempt the check as a swift action (rather than the normal 1d4 hours).
+</content>
+  </feature>
+  <feature>
+    <name>Weapon Specialization</name>
+    <content>You gain the Weapon Specialization feat as a bonus feat for each weapon type with which this class grants you proficiency.</content>
+  </feature>
+</classLevel>
+
+
+<classLevel level="4">
+<bab>3</bab>
+<fort>1</fort>
+<ref>4</ref>
+<will>4</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="5">
+<bab>3</bab>
+<fort>1</fort>
+<ref>4</ref>
+<will>4</will>
+  <feature>
+    <name>Expertise (1d6+1)</name>
+  </feature>
+  <feature>
+    <name>Skill Expertise</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="6">
+<bab>4</bab>
+<fort>2</fort>
+<ref>5</ref>
+<will>5</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="7">
+<bab>5</bab>
+<fort>2</fort>
+<ref>5</ref>
+<will>5</will>
+  <feature>
+    <name>Expertise Talent</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="8">
+<bab>6</bab>
+<fort>2</fort>
+<ref>6</ref>
+<will>6</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="9">
+<bab>6</bab>
+<fort>3</fort>
+<ref>6</ref>
+<will>6</will>
+  <feature>
+    <name>Expertise (1d6+2)</name>
+  </feature>
+  <feature>
+    <name>Skill Expertise</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="10">
+<bab>7</bab>
+<fort>3</fort>
+<ref>7</ref>
+<will>7</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="11">
+<bab>8</bab>
+<fort>3</fort>
+<ref>7</ref>
+<will>7</will>
+  <feature>
+    <name>Expertise Talent</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="12">
+<bab>9</bab>
+<fort>4</fort>
+<ref>8</ref>
+<will>8</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="13">
+<bab>9</bab>
+<fort>4</fort>
+<ref>8</ref>
+<will>8</will>
+  <feature>
+    <name>Expertise (1d8+2)</name>
+  </feature>
+  <feature>
+    <name>Skill Expertise</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="14">
+<bab>10</bab>
+<fort>4</fort>
+<ref>9</ref>
+<will>9</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="15">
+<bab>11</bab>
+<fort>5</fort>
+<ref>9</ref>
+<will>9</will>
+  <feature>
+    <name>Expertise Talent</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="16">
+<bab>12</bab>
+<fort>5</fort>
+<ref>10</ref>
+<will>10</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="17">
+<bab>12</bab>
+<fort>5</fort>
+<ref>10</ref>
+<will>10</will>
+  <feature>
+    <name>Expertise (1d8+3)</name>
+  </feature>
+  <feature>
+    <name>Skill Expertise</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="18">
+<bab>13</bab>
+<fort>6</fort>
+<ref>11</ref>
+<will>11</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="19">
+<bab>14</bab>
+<fort>6</fort>
+<ref>11</ref>
+<will>11</will>
+  <feature>
+    <name>Expertise Talent</name>
+  </feature>
+</classLevel>
+
+
+<classLevel level="20">
+<bab>15</bab>
+<fort>6</fort>
+<ref>12</ref>
+<will>12</will>
+  <feature>
+    <name>Envoy Improvisation</name>
+  </feature>
+  <feature>
+    <name>Expertise (1d8+4)</name>
+  </feature>
+  <feature>
+    <name>True Expertise</name>
+    <content>You gain total mastery over one of your envoy improvisations and can use it with but a thought. When you gain this ability, choose one improvisation you know that has an effect when you spend 1 Resolve Point.
+
+As long as you have at least 1 Resolve Point remaining, you can gain the improvisation’s effect without spending the Resolve Point. This ability has no benefit if the improvisation requires more than 1 Resolve Point.
+
+In addition, when you roll your expertise die, you can add 2d8 rather than 1d8+4 to the result of your skill check. If, for some reason, your bonus gained from expertise isn’t 1d8+4, you can’t use this option.</content>
+  </feature>
+</classLevel>
+  
+  
+</class>
