@@ -27,6 +27,7 @@
 		8441FB1D2082AC2100EFDB72 /* CharacterSkillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */; };
 		844543B322374663005B02F6 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844543B222374663005B02F6 /* Loader.swift */; };
 		84574C612076FFE700C3FD6F /* RollerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84574C602076FFE700C3FD6F /* RollerController.swift */; };
+		846C62A3226FBB70000526F7 /* iCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C62A2226FBB70000526F7 /* iCloud.swift */; };
 		846F1BAC20743B6A0068414C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1BAB20743B6A0068414C /* AppDelegate.swift */; };
 		846F1BB120743B6B0068414C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BAF20743B6B0068414C /* Main.storyboard */; };
 		846F1BB620743B6B0068414C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BB520743B6B0068414C /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSkillController.swift; sourceTree = "<group>"; };
 		844543B222374663005B02F6 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = StarFinder/PopupViews/Loader.swift; sourceTree = SOURCE_ROOT; };
 		84574C602076FFE700C3FD6F /* RollerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerController.swift; sourceTree = "<group>"; };
+		846C62A2226FBB70000526F7 /* iCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloud.swift; sourceTree = "<group>"; };
 		846F1BA820743B6A0068414C /* StarFound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarFound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846F1BAB20743B6A0068414C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846F1BB020743B6B0068414C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				846F1BAB20743B6A0068414C /* AppDelegate.swift */,
 				8495C863222736F900500C8B /* IAP.swift */,
 				84A6162E221E452F0006311D /* CharacterSelectorController.swift */,
+				846C62A2226FBB70000526F7 /* iCloud.swift */,
 				8422F38D208957C6006E8CB6 /* CharacterControllers */,
 				8422F38C20895788006E8CB6 /* EditorControllers */,
 				8422F389208956E8006E8CB6 /* PopupViews */,
@@ -345,11 +348,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StarFound/Pods-StarFound-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +392,7 @@
 				8418DF482097D1620098B210 /* EditorSkillsController.swift in Sources */,
 				8495C864222736F900500C8B /* IAP.swift in Sources */,
 				84CEECC5207D814F00770F3D /* Compendium.swift in Sources */,
+				846C62A3226FBB70000526F7 /* iCloud.swift in Sources */,
 				84868B4C2086C7D700683C60 /* EditorNewRaceThemeClassController.swift in Sources */,
 				84E9EF0020A81C27006D4D76 /* CharacterItemsController.swift in Sources */,
 				848F6F42209CFEA300074841 /* CoreDataStack.swift in Sources */,

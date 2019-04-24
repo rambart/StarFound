@@ -10,6 +10,7 @@ import UIKit
 import CoreImage
 import GoogleMobileAds
 import CloudKit
+import SVProgressHUD
 
 class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
 
@@ -459,7 +460,40 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
         selectedPage = Int((scrollView.contentOffset.x / cellWidth) + 0.5)
     }
     
+    private func fetchUserRecordID() {
+        // Fetch Default Container
+        let defaultContainer = CKContainer.default()
+        
+        // Fetch User Record
+        defaultContainer.fetchUserRecordID { (recordID, error) -> Void in
+            if let responseError = error {
+                print(responseError)
+                
+            } else if let userRecordID = recordID {
+                DispatchQueue.main.sync {
+                    self.fetchUserRecord(recordID: userRecordID)
+                }
+            }
+        }
+    }
     
+    private func fetchUserRecord(recordID: CKRecord.ID) {
+        // Fetch Default Container
+        let defaultContainer = CKContainer.default()
+        
+        // Fetch Private Database
+        let privateDatabase = defaultContainer.privateCloudDatabase
+        
+        // Fetch User Record
+        privateDatabase.fetch(withRecordID: recordID) { (record, error) -> Void in
+            if let responseError = error {
+                print(responseError)
+                
+            } else if let userRecord = record {
+                print(userRecord)
+            }
+        }
+    }
     
     
     
@@ -596,6 +630,7 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Attributes
     var PCs = [PlayerCharacter]()
+    var cloudPCs = [CKRecord]()
     
     // MARK: - Outlets
     @IBOutlet weak var pcsTable: UITableView!
@@ -712,6 +747,32 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     func saveToCloud() {
         let database = CKContainer.default().privateCloudDatabase
         let newBackup = CKRecord(recordType: "backup")
+    }
+    
+    func fetchBackup() {
+        let privateDatabase = CKContainer.default().privateCloudDatabase
+        
+        // Initialize Query
+        let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+        
+        self.cloudPCs = [CKRecord]()
+        
+        // Perform Query
+        privateDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            records?.forEach({ (record) in
+                
+                guard error == nil else{
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                
+                self.cloudPCs.append(record)
+            })
+        }
+        
+        
+        
+        
         
     }
     
@@ -724,6 +785,38 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     
+    
+    private func fetchCharacters() {
+        // Fetch Private Database
+        let privateDatabase = CKContainer.default().privateCloudDatabase
+        
+        // Initialize Query
+        let query = CKQuery(recordType: "Characters", predicate: NSPredicate(value: true))
+        
+        // Configure Query
+        //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        // Perform Query
+        privateDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            records?.forEach({ (record) in
+                
+                guard error == nil else{
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                
+                let dataString = record.value(forKey: "data") as! String
+                guard let data: Data  = dataString.data(using: .utf8) else {print("data error 1"); return}
+                guard let url = URL(dataRepresentation: data, relativeTo: nil) else {print("data error 2"); return}
+                importPC(from: url)
+                
+                DispatchQueue.main.sync {
+                    self.pcsTable.reloadData()
+                }
+            })
+            
+        }
+    }
     
     
     // MARK: - Table View

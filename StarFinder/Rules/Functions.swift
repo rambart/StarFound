@@ -992,7 +992,7 @@ extension PlayerCharacter {
 func importPC(from url: URL, order: Int? = nil) {
     
     guard let dictionary = NSDictionary(contentsOf: url),
-        let PCinfo = dictionary as? [String: AnyObject] else {return}
+        let PCinfo = dictionary as? [String: AnyObject] else {print("couldn't create dict"); return}
     
     let PC = PlayerCharacter(context: context)
     if order != nil {
@@ -1573,4 +1573,10 @@ func unwrapItem(_ dictionaries: Array<Dictionary<String, Any>>) -> NSOrderedSet 
     }
     return NSOrderedSet.init(array: items)
 }
+
+
+
+
+
+
 

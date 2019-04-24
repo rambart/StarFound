@@ -7,5 +7,6 @@ target 'StarFound' do
 
   # Pods for StarFound
 pod 'Google-Mobile-Ads-SDK'
+pod 'SVProgressHUD'
 
 end
