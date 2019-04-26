@@ -531,7 +531,7 @@ class MenuTable: UITableViewController {
             self.dismiss(animated: true)
             
         case 4:
-            guard let url = PC.export()
+            guard let url = PC.export(withPortrait: true)
                 else { return }
             
             let message = """

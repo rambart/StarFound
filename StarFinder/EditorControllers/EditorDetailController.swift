@@ -470,7 +470,7 @@ class EditorDetailController: UIViewController, UITextFieldDelegate, UIPickerVie
         let imageName = UUID().uuidString
         let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
         
-        if let jpegData = image.jpegData(compressionQuality: 80) {
+        if let jpegData = image.jpegData(compressionQuality: 100) {
             try? jpegData.write(to: imagePath)
         }
         

@@ -11,6 +11,18 @@ import GameplayKit
 import os.signpost
 import UIKit
 
+public func deletePC(_ PC: PlayerCharacter) {
+    if PC.portraitPath != nil {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(PC.portraitPath!)
+        do {
+            try FileManager.default.removeItem(at: path)
+        } catch {
+            print("Couldn't delete portrait")
+        }
+    }
+    context.delete(PC)
+}
+
 class Palette {
     var main: UIColor
     var bg: UIColor
@@ -892,7 +904,7 @@ extension PlayerCharacter {
 }
 
 extension PlayerCharacter {
-    func export() -> URL? {
+    func export(withPortrait: Bool = false) -> URL? {
         
         var PCAttributes: [String : Any] = ["name": self.name ?? "",
                                             "alignment" : self.alignment ?? "",
@@ -964,8 +976,7 @@ extension PlayerCharacter {
         PCAttributes["ownsWeapon"] = weaponDict(self.ownsWeapon?.array as! [Weapon])
         PCAttributes["ownsItem"] = itemDict(self.ownsItem?.array as! [Item])
         
-        
-        if self.portraitPath != nil {
+        if self.portraitPath != nil && withPortrait {
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(self.portraitPath!)
             if let image = UIImage(contentsOfFile: path.path) {
                 if let data = image.jpegData(compressionQuality: 100) {
@@ -974,7 +985,6 @@ extension PlayerCharacter {
             }
             
         }
-        
         
         guard let path = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -989,7 +999,7 @@ extension PlayerCharacter {
     
 }
     
-func importPC(from url: URL, order: Int? = nil) {
+func importPC(from url: URL, order: Int? = nil, portrait: UIImage? = nil) {
     
     guard let dictionary = NSDictionary(contentsOf: url),
         let PCinfo = dictionary as? [String: AnyObject] else {print("couldn't create dict"); return}
@@ -1115,7 +1125,20 @@ func importPC(from url: URL, order: Int? = nil) {
         
         PC.portraitPath = imageName
         
+    } else if portrait != nil {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        
+        let imageName = UUID().uuidString
+        let imagePath = documentsDirectory.appendingPathComponent(imageName)
+        
+        if let jpegData = portrait!.jpegData(compressionQuality: 100) {
+            try? jpegData.write(to: imagePath)
+        }
+        
+        PC.portraitPath = imageName
     }
+    
 }
 
 

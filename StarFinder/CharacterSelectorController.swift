@@ -227,6 +227,7 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
 
     func createNewPC() {
         let newPC = PlayerCharacter(context: context)
+        newPC.order = Int16(PCs.count)
         newPC.strength = 10
         newPC.dexterity = 10
         newPC.constitution = 10
@@ -660,9 +661,19 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func PCChanged() {
+        fetchPCs()
         PCs = PCs.sorted(by: { $0.order < $1.order })
         pcsTable.reloadData()
         pcsTableHeight.constant = pcsTable.contentSize.height
+    }
+    
+    func fetchPCs() {
+        do {
+            try PCs = context.fetch(PlayerCharacter.fetchRequest())
+        } catch {
+            print("Did not fetch")
+        }
+        PCs = PCs.sorted(by: { $0.order < $1.order })
     }
     
     // MARK: - Buttons
@@ -744,79 +755,358 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Cloud Sync
     
-    func saveToCloud() {
-        let database = CKContainer.default().privateCloudDatabase
-        let newBackup = CKRecord(recordType: "backup")
+    @IBAction func cloudSave(_ sender: Any) {
+        saveToCloud()
     }
     
-    func fetchBackup() {
-        let privateDatabase = CKContainer.default().privateCloudDatabase
+    @IBAction func cloudLoad(_ sender: Any) {
+        loadFromCloud()
+    }
+    
+    func loadFromCloud() {
+        // Timeout
+        var timeOut = true
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(15), execute: {
+            if timeOut {
+                SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+                SVProgressHUD.showError(withStatus: "Unable to load backup")
+                UIApplication.shared.endIgnoringInteractionEvents()
+                return
+            }
+        })
         
-        // Initialize Query
+        let dispatch = DispatchGroup()
+        
+        cloudPCs = [CKRecord]()
+        let privateDatabase = CKContainer.default().privateCloudDatabase
         let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["data", "portrait"]
         
-        self.cloudPCs = [CKRecord]()
+        operation.recordFetchedBlock = { record in
+            print("💢")
+            self.cloudPCs.append(record)
+        }
         
-        // Perform Query
-        privateDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            records?.forEach({ (record) in
-                
-                guard error == nil else{
-                    print(error?.localizedDescription as Any)
-                    return
-                }
-                
-                self.cloudPCs.append(record)
-            })
+        operation.queryCompletionBlock = { (_, error) in
+            guard error == nil else {
+                SVProgressHUD.showError(withStatus: "Unable to load backup")
+                return
+            }
+            timeOut = false
+            dispatch.leave()
         }
         
         
         
+        DispatchQueue.global(qos: .userInitiated).sync {
+            SVProgressHUD.show(withStatus: "Loading from iCloud")
+            dispatch.enter()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            privateDatabase.add(operation)
+        }
         
         
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private func fetchCharacters() {
-        // Fetch Private Database
-        let privateDatabase = CKContainer.default().privateCloudDatabase
-        
-        // Initialize Query
-        let query = CKQuery(recordType: "Characters", predicate: NSPredicate(value: true))
-        
-        // Configure Query
-        //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
-        // Perform Query
-        privateDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            records?.forEach({ (record) in
-                
-                guard error == nil else{
-                    print(error?.localizedDescription as Any)
-                    return
-                }
-                
-                let dataString = record.value(forKey: "data") as! String
-                guard let data: Data  = dataString.data(using: .utf8) else {print("data error 1"); return}
-                guard let url = URL(dataRepresentation: data, relativeTo: nil) else {print("data error 2"); return}
-                importPC(from: url)
-                
-                DispatchQueue.main.sync {
-                    self.pcsTable.reloadData()
-                }
-            })
+        dispatch.notify(queue: .main) {
             
+            // Delete old PCs
+            if self.cloudPCs.count <= 0 {
+                SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+                SVProgressHUD.showError(withStatus: "No characters backed up")
+                UIApplication.shared.endIgnoringInteractionEvents()
+                return
+            } else {
+                for PC in self.PCs {
+                    deletePC(PC)
+                }
+            }
+            
+            // Create new PCs
+            for record in self.cloudPCs {
+                guard let dataString = record.value(forKey: "data") as? String else { return }
+                var portrait: UIImage? = nil
+                if let asset = record.value(forKey: "portrait") as? CKAsset,
+                    let url = asset.fileURL {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        portrait = UIImage(data: data)
+                    } catch {
+                        print("could not open data from url")
+                        print(error.localizedDescription)
+                    }
+                    
+                }
+                
+                createPC(from: dataString, portrait: portrait)
+            }
+            
+            // Save
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PCChanged"), object: nil)
+            
+            SVProgressHUD.dismiss()
+            SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+            SVProgressHUD.showSuccess(withStatus: "Restored from backup")
+            UIApplication.shared.endIgnoringInteractionEvents()
+            return
         }
     }
+    
+    func saveToCloud() {
+        
+    }
+    
+    
+    
+    
+//    func saveToCloud() {
+//        // Timeout exits after 15 seconds in case server is too slow or cannot be reached
+//        var timeOut = true
+//        var urls = [URL]()
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(35), execute: {
+//            if timeOut {
+//                SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+//                SVProgressHUD.showError(withStatus: "Unable to load backup")
+//
+//                for url in urls {
+//                    do {
+//                        try FileManager.default.removeItem(at: url)
+//                    } catch {
+//                        print("Failed to remove item from files")
+//                    }
+//                }
+//
+//                UIApplication.shared.endIgnoringInteractionEvents()
+//                return
+//            }
+//        })
+//
+//        let fetchDispatch = DispatchGroup()
+//        let saveDispatch = DispatchGroup()
+//
+//        cloudPCs = [CKRecord]()
+//        let privateDatabase = CKContainer.default().privateCloudDatabase
+//        let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+//        let operation = CKQueryOperation(query: query)
+//        operation.desiredKeys = ["data", "portrait"]
+//
+//        operation.recordFetchedBlock = { record in
+//            print("💢")
+//            self.cloudPCs.append(record)
+//        }
+//
+//        operation.queryCompletionBlock = { (_, error) in
+//            guard error == nil else {
+//                SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+//                SVProgressHUD.showError(withStatus: "Unable to load backup")
+//                UIApplication.shared.endIgnoringInteractionEvents()
+//                return
+//            }
+//
+//            timeOut = false
+//
+//            // Deletes old records
+//            for record in self.cloudPCs {
+//                privateDatabase.delete(withRecordID: record.recordID, completionHandler: { (id, error) in
+//                    if error != nil {
+//                        print(error?.localizedDescription)
+//                    }
+//                })
+//            }
+//
+//
+//        }
+//
+//        fetchDispatch.enter()
+//
+//        DispatchQueue.global(qos: .userInitiated).sync {
+//            SVProgressHUD.show(withStatus: "Saving to iCloud")
+//            UIApplication.shared.beginIgnoringInteractionEvents()
+//
+//            // Create new records
+//            for PC in self.PCs {
+//                // Creates backup text file containing data for character and stores it at url
+//                guard let url = PC.export() else { return }
+//                urls.append(url)
+//                var dataString = ""
+//                do {
+//                    dataString = try String(contentsOf: url)
+//                } catch {
+//                    print("Caught creating data String")
+//                    return
+//                }
+//
+//
+//                let character = CKRecord(recordType: "Character")
+//                character.setObject((PC.name ?? "name") as NSString, forKey: "name")
+//                character.setObject(dataString as NSString, forKey: "data")
+//
+//                // Create image asset for character portrait
+//                if PC.portraitPath != nil {
+//                    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(PC.portraitPath!)
+//                    let img = CKAsset(fileURL: path)
+//                    character.setObject(img, forKey: "portrait")
+//                }
+//
+//                // Save newly created CKRecord
+//                privateDatabase.save(character) { (record, error) in
+//                    if error != nil {
+//                        print(error?.localizedDescription)
+//                    }
+//                    print(character.value(forKey: "name"))
+//                }
+//            }
+//
+//            // Fetches old records and deletes them from the database
+//            privateDatabase.add(operation)
+//
+//            fetchDispatch.leave()
+//        }
+//
+//        fetchDispatch.notify(queue: .main) {
+//            // Remove backup text files created at url
+//            for url in urls {
+//                do {
+//                    try FileManager.default.removeItem(at: url)
+//                } catch {
+//                    print("♨️Failed to remove item from files")
+//                }
+//            }
+//
+//            SVProgressHUD.dismiss()
+//            SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+//            SVProgressHUD.showSuccess(withStatus: "Saved to iCloud")
+//            UIApplication.shared.endIgnoringInteractionEvents()
+//            return
+//        }
+//    }
+    
+    
+//    func fetchBackup(for save: Bool) {
+////        SVProgressHUD.show(withStatus: "Connecting to iCloud")
+//
+//        var returnArray = [CKRecord]()
+//
+//        let privateDatabase = CKContainer.default().privateCloudDatabase
+//
+//        let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+//        let operation = CKQueryOperation(query: query)
+//        operation.desiredKeys = ["data", "portrait"]
+//        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+//            print("⚠️ \(self.cloudPCs.count) ⚠️")
+//            DispatchQueue.main.async {
+//                if save {
+//                    self.overwriteSaves()
+//                } else {
+//                    self.overwriteBackup()
+//                }
+//
+//            }
+//        }
+//
+//        operation.recordFetchedBlock = { record in
+//            print("💢")
+//            returnArray.append(record)
+//            self.cloudPCs = returnArray
+//        }
+//
+//        privateDatabase.add(operation)
+//
+////        DispatchQueue.main.sync {
+////            SVProgressHUD.dismiss()
+////        }
+//        cloudPCs = returnArray
+//    }
+//
+//    func overwriteSaves() {
+//
+//        for PC in PCs {
+//            deletePC(PC)
+//        }
+//
+//        for record in cloudPCs {
+//            guard let dataString = record.value(forKey: "data") as? String else { return }
+//            var portrait: UIImage? = nil
+//            if let asset = record.value(forKey: "portrait") as? CKAsset,
+//                let url = asset.fileURL {
+//                do {
+//                    let data = try Data(contentsOf: url)
+//                    portrait = UIImage(data: data)
+//                } catch {
+//                    print("could not open data from url")
+//                    print(error.localizedDescription)
+//                }
+//
+//            }
+//
+//            createPC(from: dataString, portrait: portrait)
+//        }
+//
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PCChanged"), object: nil)
+//    }
+//
+//    func overwriteBackup() {
+//
+//        let privateDatabase = CKContainer.default().privateCloudDatabase
+//
+//        SVProgressHUD.show(withStatus: "Saving to iCloud")
+//
+//        print("❌ \(cloudPCs.count) ❌")
+//        for record in cloudPCs {
+//            privateDatabase.delete(withRecordID: record.recordID) { (recordID, error) -> Void in
+//                if error != nil {
+//                    print(error?.localizedDescription)
+//                }
+//            }
+//        }
+//
+//        for PC in PCs {
+//            guard let url = PC.export() else { return }
+//            var dataString = ""
+//            do {
+//                dataString = try String(contentsOf: url)
+//            } catch { return }
+//
+//
+//
+//
+//            let character = CKRecord(recordType: "Character")
+//            character.setObject((PC.name ?? "name") as NSString, forKey: "name")
+//            character.setObject(dataString as NSString, forKey: "data")
+//
+//
+//            if PC.portraitPath != nil {
+//                let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(PC.portraitPath!)
+//                let img = CKAsset(fileURL: path)
+//                character.setObject(img, forKey: "portrait")
+//            }
+//
+//            privateDatabase.save(character) { (record, error) in
+//
+//                if error != nil {
+//                    print(error?.localizedDescription)
+//                }
+//
+//                DispatchQueue.main.sync {
+//                    SVProgressHUD.dismiss()
+//                }
+//            }
+//
+//            do {
+//                try FileManager.default.removeItem(at: url)
+//            } catch {
+//                print("Failed to remove item from Inbox")
+//            }
+//
+//        }
+//
+//
+//    }
+    
+
     
     
     // MARK: - Table View
@@ -836,6 +1126,7 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterDeleterCell", for: indexPath)
             let attString = NSMutableAttributedString()
             attString.shadowSub(PCs[indexPath.row].name ?? "Unnamed Character")
+            attString.shadowSub(" Order: \(PCs[indexPath.row].order)")
             cell.textLabel?.attributedText = attString
             let imageBG = UIImageView()
             if PCs[indexPath.row].portraitPath != nil {
@@ -862,7 +1153,7 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             let PC = PCs[indexPath.row]
             PCs.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            context.delete(PC)
+            deletePC(PC)
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PCChanged"), object: nil)
             
