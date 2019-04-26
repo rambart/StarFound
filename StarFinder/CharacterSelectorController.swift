@@ -756,7 +756,19 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Cloud Sync
     
     @IBAction func cloudSave(_ sender: Any) {
-        saveToCloud()
+        SVProgressHUD.show(withStatus: "Saving to iCloud")
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        saveToCloud { (didSave) in
+            SVProgressHUD.dismiss()
+            SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
+            if didSave {
+                SVProgressHUD.showSuccess(withStatus: "Saved to iCloud")
+            } else {
+                SVProgressHUD.showError(withStatus: "Unable to save")
+            }
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
     }
     
     @IBAction func cloudLoad(_ sender: Any) {
@@ -853,34 +865,177 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func saveToCloud() {
+    func saveToCloud(_ completion: @escaping (Bool) -> Void) {
+        var urls = [URL]()
+        var timeOut = true
+        let close = {
+            for url in urls {
+                do {
+                    try FileManager.default.removeItem(at: url)
+                } catch {
+                    print("item already deleted")
+                }
+            }
+            completion(false)
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(20), execute: {
+            if timeOut {
+                close()
+            }
+        })
+
         
+        var oldRecords = [CKRecord]()
+        let privateDatabase = CKContainer.default().privateCloudDatabase
+        let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+        let operation = CKQueryOperation(query: query)
+        
+        operation.recordFetchedBlock = { (record) in
+            oldRecords.append(record)
+        }
+        
+        operation.queryCompletionBlock = { (cursor, error) in
+            for record in oldRecords {
+                privateDatabase.delete(withRecordID: record.recordID, completionHandler: { (id, error) in
+                    if error != nil {
+                        print(error?.localizedDescription)
+                        close()
+                    }
+                })
+            }
+        }
+        
+        // Create new records
+        var newRecords = [CKRecord]()
+        for PC in self.PCs {
+            // Creates backup text file containing data for character and stores it at url
+            guard let url = PC.export() else { close(); return }
+            urls.append(url)
+            var dataString = ""
+            do {
+                dataString = try String(contentsOf: url)
+            } catch {
+                print("Caught creating data String")
+                close()
+            }
+            
+            let character = CKRecord(recordType: "Character")
+            character.setObject((PC.name ?? "name") as NSString, forKey: "name")
+            character.setObject(dataString as NSString, forKey: "data")
+            
+            // Create image asset for character portrait
+            if PC.portraitPath != nil {
+                let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(PC.portraitPath!)
+                let img = CKAsset(fileURL: path)
+                character.setObject(img, forKey: "portrait")
+            }
+            
+            newRecords.append(character)
+        }
+        
+        let dispatch = DispatchGroup()
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            privateDatabase.add(operation)
+            timeOut = false
+            
+            for character in newRecords {
+                dispatch.enter()
+                // Save newly created CKRecord
+                privateDatabase.save(character) { (record, error) in
+                    if error != nil {
+                        print(error?.localizedDescription)
+                        close()
+                    }
+                    print(character.value(forKey: "name"))
+                    dispatch.leave()
+                }
+            }
+            
+            for url in urls {
+                do {
+                    try FileManager.default.removeItem(at: url)
+                } catch {
+                    print("Failed to remove character from files")
+                    print(error.localizedDescription)
+                }
+            }
+            
+            dispatch.wait()
+            
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        }
     }
+
+
+//    func fetchAndDeleteOld(_ completion: @escaping () -> Void) {
+//        var oldRecords = [CKRecord]()
+//        let privateDatabase = CKContainer.default().privateCloudDatabase
+//        let query = CKQuery(recordType: "Character", predicate: NSPredicate(value: true))
+//        let operation = CKQueryOperation(query: query)
+//
+//        operation.recordFetchedBlock = { (record) in
+//            oldRecords.append(record)
+//        }
+//
+//        operation.queryCompletionBlock = { (cursor, error) in
+//            for record in oldRecords {
+//                privateDatabase.delete(withRecordID: record.recordID, completionHandler: { (id, error) in
+//                    guard error == nil else {
+//                        print(error?.localizedDescription)
+//                        return
+//                    }
+//                })
+//            }
+//        }
+//
+//        privateDatabase.add(operation)
+//    }
+//
+//    func createAndSaveRecords(_ completion: @escaping () -> Void) {
+//        // Create new records
+//        for PC in self.PCs {
+//            // Creates backup text file containing data for character and stores it at url
+//            guard let url = PC.export() else { return }
+//            var dataString = ""
+//            do {
+//                dataString = try String(contentsOf: url)
+//            } catch {
+//                print("Caught creating data String")
+//                return
+//            }
+//
+//
+//            let character = CKRecord(recordType: "Character")
+//            character.setObject((PC.name ?? "name") as NSString, forKey: "name")
+//            character.setObject(dataString as NSString, forKey: "data")
+//
+//            // Create image asset for character portrait
+//            if PC.portraitPath != nil {
+//                let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(PC.portraitPath!)
+//                let img = CKAsset(fileURL: path)
+//                character.setObject(img, forKey: "portrait")
+//            }
+//
+//            // Save newly created CKRecord
+//            privateDatabase.save(character) { (record, error) in
+//                if error != nil {
+//                    print(error?.localizedDescription)
+//                }
+//                print(character.value(forKey: "name"))
+//            }
+//        }
+//
+//    }
     
     
     
     
 //    func saveToCloud() {
 //        // Timeout exits after 15 seconds in case server is too slow or cannot be reached
-//        var timeOut = true
-//        var urls = [URL]()
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(35), execute: {
-//            if timeOut {
-//                SVProgressHUD.setMaximumDismissTimeInterval(TimeInterval(exactly: 2)!)
-//                SVProgressHUD.showError(withStatus: "Unable to load backup")
 //
-//                for url in urls {
-//                    do {
-//                        try FileManager.default.removeItem(at: url)
-//                    } catch {
-//                        print("Failed to remove item from files")
-//                    }
-//                }
-//
-//                UIApplication.shared.endIgnoringInteractionEvents()
-//                return
-//            }
-//        })
 //
 //        let fetchDispatch = DispatchGroup()
 //        let saveDispatch = DispatchGroup()
