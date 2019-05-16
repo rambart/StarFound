@@ -59,10 +59,6 @@ class EditorDetailController: UIViewController, UITextFieldDelegate, UIPickerVie
         super.viewDidLoad()
                 
         NotificationCenter.default.addObserver(self, selector: #selector(PCChanged), name:NSNotification.Name(rawValue: "PCChanged"), object: nil)
-        /*
-        NotificationCenter.default.addObserver(self, selector: #selector(PCSaved), name:NSNotification.Name(rawValue: "PCSaved"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(PCCanceled), name:NSNotification.Name(rawValue: "PCCanceled"), object: nil)
-        */
         
         num = [String]()
         for i in 1...50 {

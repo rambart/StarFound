@@ -84,7 +84,7 @@ class MasterEditorController: UIViewController, UIScrollViewDelegate, GADBannerV
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if !UserDefaults.standard.bool(forKey: "*Rambart.StarFound.unlock") {
+        if !UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             
             bannerView.adUnitID = GoogleAdsID

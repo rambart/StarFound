@@ -27,7 +27,7 @@
 		8441FB1D2082AC2100EFDB72 /* CharacterSkillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */; };
 		844543B322374663005B02F6 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844543B222374663005B02F6 /* Loader.swift */; };
 		84574C612076FFE700C3FD6F /* RollerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84574C602076FFE700C3FD6F /* RollerController.swift */; };
-		846C62A3226FBB70000526F7 /* iCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C62A2226FBB70000526F7 /* iCloud.swift */; };
+		846C62A3226FBB70000526F7 /* iCloudAndSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C62A2226FBB70000526F7 /* iCloudAndSharing.swift */; };
 		846F1BAC20743B6A0068414C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1BAB20743B6A0068414C /* AppDelegate.swift */; };
 		846F1BB120743B6B0068414C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BAF20743B6B0068414C /* Main.storyboard */; };
 		846F1BB620743B6B0068414C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846F1BB520743B6B0068414C /* Assets.xcassets */; };
@@ -39,6 +39,7 @@
 		848F6F42209CFEA300074841 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F6F41209CFEA300074841 /* CoreDataStack.swift */; };
 		848F6F44209D261C00074841 /* CharacterSpellsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F6F43209D261C00074841 /* CharacterSpellsController.swift */; };
 		8495C864222736F900500C8B /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495C863222736F900500C8B /* IAP.swift */; };
+		84A26D992273DC30007086FF /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A26D982273DC30007086FF /* MainMenuController.swift */; };
 		84A2B6D420B774FE007D05BC /* KGCountingStars.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A2B6D320B774EF007D05BC /* KGCountingStars.ttf */; };
 		84A2B6D620B78728007D05BC /* CharacterCombatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2B6D520B78728007D05BC /* CharacterCombatController.swift */; };
 		84A429322088033500AA9E4C /* EditorFeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A429312088033500AA9E4C /* EditorFeatController.swift */; };
@@ -75,7 +76,7 @@
 		8441FB1C2082AC2100EFDB72 /* CharacterSkillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSkillController.swift; sourceTree = "<group>"; };
 		844543B222374663005B02F6 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = StarFinder/PopupViews/Loader.swift; sourceTree = SOURCE_ROOT; };
 		84574C602076FFE700C3FD6F /* RollerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerController.swift; sourceTree = "<group>"; };
-		846C62A2226FBB70000526F7 /* iCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloud.swift; sourceTree = "<group>"; };
+		846C62A2226FBB70000526F7 /* iCloudAndSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudAndSharing.swift; sourceTree = "<group>"; };
 		846F1BA820743B6A0068414C /* StarFound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarFound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846F1BAB20743B6A0068414C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846F1BB020743B6B0068414C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		848F6F41209CFEA300074841 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		848F6F43209D261C00074841 /* CharacterSpellsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSpellsController.swift; sourceTree = "<group>"; };
 		8495C863222736F900500C8B /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
+		84A26D982273DC30007086FF /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		84A2B6D320B774EF007D05BC /* KGCountingStars.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGCountingStars.ttf; sourceTree = "<group>"; };
 		84A2B6D520B78728007D05BC /* CharacterCombatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCombatController.swift; sourceTree = "<group>"; };
 		84A429312088033500AA9E4C /* EditorFeatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFeatController.swift; sourceTree = "<group>"; };
@@ -222,7 +224,8 @@
 				846F1BAB20743B6A0068414C /* AppDelegate.swift */,
 				8495C863222736F900500C8B /* IAP.swift */,
 				84A6162E221E452F0006311D /* CharacterSelectorController.swift */,
-				846C62A2226FBB70000526F7 /* iCloud.swift */,
+				84A26D982273DC30007086FF /* MainMenuController.swift */,
+				846C62A2226FBB70000526F7 /* iCloudAndSharing.swift */,
 				8422F38D208957C6006E8CB6 /* CharacterControllers */,
 				8422F38C20895788006E8CB6 /* EditorControllers */,
 				8422F389208956E8006E8CB6 /* PopupViews */,
@@ -392,7 +395,8 @@
 				8418DF482097D1620098B210 /* EditorSkillsController.swift in Sources */,
 				8495C864222736F900500C8B /* IAP.swift in Sources */,
 				84CEECC5207D814F00770F3D /* Compendium.swift in Sources */,
-				846C62A3226FBB70000526F7 /* iCloud.swift in Sources */,
+				84A26D992273DC30007086FF /* MainMenuController.swift in Sources */,
+				846C62A3226FBB70000526F7 /* iCloudAndSharing.swift in Sources */,
 				84868B4C2086C7D700683C60 /* EditorNewRaceThemeClassController.swift in Sources */,
 				84E9EF0020A81C27006D4D76 /* CharacterItemsController.swift in Sources */,
 				848F6F42209CFEA300074841 /* CoreDataStack.swift in Sources */,

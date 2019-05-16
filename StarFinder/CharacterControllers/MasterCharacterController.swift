@@ -81,7 +81,7 @@ class MasterCharacterController: UIViewController, UIScrollViewDelegate, GADBann
     override func viewWillAppear(_ animated: Bool) {
         PC = (self.navigationController as! MasterCharacterNav).PC
         
-        if !UserDefaults.standard.bool(forKey: "*Rambart.StarFound.unlock") {
+        if !UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             
             bannerView.adUnitID = GoogleAdsID
