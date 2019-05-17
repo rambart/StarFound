@@ -13,6 +13,10 @@ import GoogleMobileAds
 public let GoogleAdsID = "ca-app-pub-8018625094361074/1936062034"
 //  Test Ad ID: ca-app-pub-3940256099942544/2934735716
 
+public let devMode = false
+//  Set to true to toggle ability to unlock app from the top right of the OGL screen
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
