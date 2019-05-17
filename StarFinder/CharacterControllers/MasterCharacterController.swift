@@ -536,24 +536,35 @@ class MenuTable: UITableViewController {
             self.dismiss(animated: true)
             
         case 4:
-            guard let url = PC.export(withPortrait: true)
-                else { return }
-            
-            let message = """
-            Open the attachment and select "Copy to StarFound". You may need to scroll to see this option. You can also save this in your Files App and import it into StarFound at any time by selecting it and tapping the action button (box with an arrow pointing upwards) and selecting "Copy to Starfound".
-            """
-            
-            let activityController = UIActivityViewController(activityItems: [message, url], applicationActivities: nil)
-            
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                let rectOfCell = tableView.rectForRow(at: indexPath)
-                let rectOfCellInSuperview = tableView.convert(rectOfCell, to: tableView.superview)
+            if UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
+                guard let url = PC.export(withPortrait: true)
+                    else { return }
                 
+                let message = """
+                Open the attachment and select "Copy to StarFound". You may need to scroll to see this option. You can also save this in your Files App and import it into StarFound at any time by selecting it and tapping the action button (box with an arrow pointing upwards) and selecting "Copy to Starfound".
+                """
                 
-                activityController.popoverPresentationController?.sourceView = self.view
-                activityController.popoverPresentationController?.sourceRect = rectOfCellInSuperview
+                let activityController = UIActivityViewController(activityItems: [message, url], applicationActivities: nil)
+                
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    let rectOfCell = tableView.rectForRow(at: indexPath)
+                    let rectOfCellInSuperview = tableView.convert(rectOfCell, to: tableView.superview)
+                    
+                    
+                    activityController.popoverPresentationController?.sourceView = self.view
+                    activityController.popoverPresentationController?.sourceRect = rectOfCellInSuperview
+                }
+                present(activityController, animated: true, completion: nil)
+            } else {
+                let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to share your character sheet.", preferredStyle: .alert)
+                let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                    IAPService.shared.purchase("Rambart.StarFound.unlock")
+                }
+                let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
+                ac.addAction(buy)
+                ac.addAction(noThanks)
+                present(ac, animated: true)
             }
-            present(activityController, animated: true, completion: nil)
             
         default:
             self.dismiss(animated: true)
@@ -561,7 +572,6 @@ class MenuTable: UITableViewController {
         
         
     }
-    
     
 }
 

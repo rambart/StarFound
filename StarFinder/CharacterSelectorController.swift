@@ -209,7 +209,9 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
                     // User has not purchased unlock or is unable to restore
                     // Create and present prompt to buy unlock
                     let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to create and manage more characters.", preferredStyle: .alert)
-                    let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+                    let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                        IAPService.shared.purchase("Rambart.StarFound.unlock")
+                    }
                     let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
                     ac.addAction(buy)
                     ac.addAction(noThanks)
@@ -219,11 +221,6 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
         } else {
             createNewPC()
         }
-    }
-    
-    // Prompts the unlock IAP
-    func purchaseFullVersion (_: UIAlertAction) {
-        IAPService.shared.purchase("Rambart.StarFound.unlock")
     }
     
 

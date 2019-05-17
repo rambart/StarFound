@@ -75,7 +75,7 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
                 ac.addAction(UIAlertAction(title: "Done", style: .cancel))
                 present(ac, animated: true)
             } else {
-                purchaseFullVersion(UIAlertAction())
+                IAPService.shared.purchase("Rambart.StarFound.unlock")
             }
         }
     }
@@ -109,7 +109,9 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
                 openThemeChanger()
             } else {
                 let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to change your theme", preferredStyle: .alert)
-                let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+                let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                    IAPService.shared.purchase("Rambart.StarFound.unlock")
+                }
                 let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
                 ac.addAction(buy)
                 ac.addAction(noThanks)
@@ -117,10 +119,6 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-    }
-    
-    func purchaseFullVersion (_: UIAlertAction) {
-        IAPService.shared.purchase("Rambart.StarFound.unlock")
     }
     
     func openThemeChanger() {
@@ -148,7 +146,9 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             present(ac, animated: true)
         } else {
             let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to sync with iCloud", preferredStyle: .alert)
-            let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+            let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                IAPService.shared.purchase("Rambart.StarFound.unlock")
+            }
             let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
             ac.addAction(buy)
             ac.addAction(noThanks)
@@ -166,7 +166,9 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             present(ac, animated: true)
         } else {
             let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to sync with iCloud", preferredStyle: .alert)
-            let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+            let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                IAPService.shared.purchase("Rambart.StarFound.unlock")
+            }
             let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
             ac.addAction(buy)
             ac.addAction(noThanks)
@@ -306,7 +308,7 @@ class OGLController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(unlock))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(unlock))
     }
     
     @objc func done() {

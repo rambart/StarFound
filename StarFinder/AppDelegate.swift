@@ -36,24 +36,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        // 1
-        guard url.pathExtension == "char" else { print("not x.char") ; return false}
         
-        print("importing")
-        
-        var PCs = [PlayerCharacter]()
-        do {
-            try PCs = context.fetch(PlayerCharacter.fetchRequest())
-        } catch {
-            print("Did not fetch")
+        if UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
+            guard url.pathExtension == "char" else { print("not x.char") ; return false}
+            
+            print("importing")
+            
+            var PCs = [PlayerCharacter]()
+            do {
+                try PCs = context.fetch(PlayerCharacter.fetchRequest())
+            } catch {
+                print("Did not fetch")
+            }
+            // 2
+            importPC(from: url, order: PCs.count)
+            
+            // 3
+            saveContext()
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PCChanged"), object: nil)
+            
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                print("Failed to remove item from Inbox")
+            }
+            
+        } else {
+            
+            let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to import a character", preferredStyle: .alert)
+            let buy = UIAlertAction(title: "Unlock", style: .default) { (_) in
+                IAPService.shared.purchase("Rambart.StarFound.unlock")
+            }
+            let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
+            ac.addAction(buy)
+            ac.addAction(noThanks)
+            
+            if var topController = UIApplication.shared.keyWindow?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                
+                topController.present(ac, animated: true)
+            }
+            
         }
-        // 2
-        importPC(from: url, order: PCs.count)
-        
-        // 3
-        saveContext()
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PCChanged"), object: nil)
         
         do {
             try FileManager.default.removeItem(at: url)
