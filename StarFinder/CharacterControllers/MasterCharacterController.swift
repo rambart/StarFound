@@ -94,6 +94,9 @@ class MasterCharacterController: UIViewController, UIScrollViewDelegate, GADBann
             
             adSpacerHeight.constant = bannerView.intrinsicContentSize.height
         } else {
+            if bannerView != nil {
+                bannerView.removeFromSuperview()
+            }
             adSpacerHeight.constant = 0
         }
     }
@@ -176,10 +179,12 @@ class MasterCharacterController: UIViewController, UIScrollViewDelegate, GADBann
         itemsBtn.tintColor = palette.main
         PCChanged()
         NotificationCenter.default.addObserver(self, selector: #selector(PCChanged), name:NSNotification.Name(rawValue: "PCChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name:NSNotification.Name(rawValue: "purchased"), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "PCChanged"), object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "purchased"), object: nil)
     }
     
     @objc func PCChanged() {

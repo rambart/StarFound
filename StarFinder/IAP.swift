@@ -49,6 +49,7 @@ extension IAPService: SKPaymentTransactionObserver {
                 let id = transaction.payment.productIdentifier
                 UserDefaults.standard.set(true, forKey: id)
                 queue.finishTransaction(transaction)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchased"), object: nil)
             default:
                 queue.finishTransaction(transaction)
             }

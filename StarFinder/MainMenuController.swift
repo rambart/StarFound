@@ -139,21 +139,39 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Cloud Sync
     
     @IBAction func cloudSave(_ sender: Any) {
-        let ac = UIAlertController(title: "Save to iCloud?", message: "This will overwrite your previous backup. Backups may take a few minutes before they become available.", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        let okay = UIAlertAction(title: "Okay", style: .default, handler: saveBtnTapped)
-        ac.addAction(cancel)
-        ac.addAction(okay)
-        present(ac, animated: true)
+        if UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
+            let ac = UIAlertController(title: "Save to iCloud?", message: "This will overwrite your previous backup. Backups may take a few minutes before they become available.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: saveBtnTapped)
+            ac.addAction(cancel)
+            ac.addAction(okay)
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to sync with iCloud", preferredStyle: .alert)
+            let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+            let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
+            ac.addAction(buy)
+            ac.addAction(noThanks)
+            present(ac, animated: true)
+        }
     }
     
     @IBAction func cloudLoad(_ sender: Any) {
-        let ac = UIAlertController(title: "Load Backup?", message: "This will overwrite your currently saved characters.", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        let okay = UIAlertAction(title: "Okay", style: .default, handler: loadBtnTapped)
-        ac.addAction(cancel)
-        ac.addAction(okay)
-        present(ac, animated: true)
+        if UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock") {
+            let ac = UIAlertController(title: "Load Backup?", message: "This will overwrite your currently saved characters.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: loadBtnTapped)
+            ac.addAction(cancel)
+            ac.addAction(okay)
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Unlock Full Version", message: "Please buy the full version to sync with iCloud", preferredStyle: .alert)
+            let buy = UIAlertAction(title: "Unlock", style: .default, handler: purchaseFullVersion )
+            let noThanks = UIAlertAction(title: "No Thank You", style: .cancel)
+            ac.addAction(buy)
+            ac.addAction(noThanks)
+            present(ac, animated: true)
+        }
     }
     
     func saveBtnTapped(_ : UIAlertAction) {
@@ -212,7 +230,6 @@ class CharacterSelectMenu: UIViewController, UITableViewDelegate, UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterDeleterCell", for: indexPath)
             let attString = NSMutableAttributedString()
             attString.shadowSub(PCs[indexPath.row].name ?? "Unnamed Character")
-            attString.shadowSub(" Order: \(PCs[indexPath.row].order)")
             cell.textLabel?.attributedText = attString
             let imageBG = UIImageView()
             if PCs[indexPath.row].portraitPath != nil {
@@ -289,7 +306,7 @@ class OGLController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(unlock))
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(unlock))
     }
     
     @objc func done() {
@@ -297,7 +314,8 @@ class OGLController: UIViewController {
     }
     
     @objc func unlock() {
-        UserDefaults.standard.set(true, forKey: "Rambart.StarFound.unlock")
+        let unlock = UserDefaults.standard.bool(forKey: "Rambart.StarFound.unlock")
+        UserDefaults.standard.set(!unlock, forKey: "Rambart.StarFound.unlock")
     }
     
     

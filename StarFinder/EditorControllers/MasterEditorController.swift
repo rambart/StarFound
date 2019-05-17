@@ -64,6 +64,14 @@ class MasterEditorController: UIViewController, UIScrollViewDelegate, GADBannerV
         skillsBtn.imageView?.contentMode = .scaleAspectFit
         itemsBtn.imageView?.contentMode = .scaleAspectFit
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name:NSNotification.Name(rawValue: "purchased"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "purchased"), object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "AbilityIncrease"), object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "NewFeat"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +105,9 @@ class MasterEditorController: UIViewController, UIScrollViewDelegate, GADBannerV
             
             adSpacerHeight.constant = bannerView.intrinsicContentSize.height
         } else {
+            if bannerView != nil {
+                bannerView.removeFromSuperview()
+            }
             adSpacerHeight.constant = 0
         }
     }

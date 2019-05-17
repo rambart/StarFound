@@ -64,14 +64,13 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
         // Notification posted when a change occurs to the PCs
         NotificationCenter.default.addObserver(self, selector: #selector(PCChanged), name:NSNotification.Name(rawValue: "PCChanged"), object: nil)
         
-        
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name:NSNotification.Name(rawValue: "purchased"), object: nil)
     }
     
     deinit {
         // Removes obsever detecting changes in PC objects
         NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "PCChanged"), object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "purchased"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +93,9 @@ class CharacterSelectorController: UIViewController, GADBannerViewDelegate {
             
             adSpacerHeight.constant = bannerView.intrinsicContentSize.height
         } else {
+            if bannerView != nil {
+                bannerView.removeFromSuperview()
+            }
             adSpacerHeight.constant = 0
         }
     }
