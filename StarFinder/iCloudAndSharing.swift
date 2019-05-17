@@ -797,6 +797,11 @@ func loadiCloudBackup(PCs: [PlayerCharacter], completion: @escaping (Bool) -> Vo
 }
 
 func saveiCloudBackup(PCs: [PlayerCharacter], completion: @escaping (Bool) -> Void ) {
+    guard PCs.count > 0 else {
+        completion(false)
+        return
+    }
+    
     let dispatch = DispatchGroup()
     
     var oldRecords = [CKRecord]()
